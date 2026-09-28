@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para ti 🏍️❤️</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#1771bd;
+    color:white;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* FONDO */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    background:
+    linear-gradient(45deg,rgba(255,255,255,.06) 25%,transparent 25%),
+    linear-gradient(-45deg,rgba(255,255,255,.06) 25%,transparent 25%),
+    linear-gradient(45deg,transparent 75%,rgba(255,255,255,.06) 75%),
+    linear-gradient(-45deg,transparent 75%,rgba(255,255,255,.06) 75%);
+    background-size:45px 45px;
+    background-position:0 0,0 22px,22px -22px,-22px 0;
+}
+
+/* BANDERAS */
+.flag{
+    font-size:32px;
+    letter-spacing:-8px;
+    margin:15px 0;
+}
+
+/* PANTALLAS */
+.pantalla{
+    min-height:100vh;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:25px;
+    text-align:center;
+    animation:aparecer .7s ease;
+}
+
+.pantalla.activa{
+    display:flex;
+}
+
+@keyframes aparecer{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* TITULOS */
+h1{
+    font-family:Georgia,serif;
+    font-size:48px;
+    color:#ffd900;
+    text-shadow:3px 4px #d34b19;
+    margin:15px 0;
+}
+
+h2{
+    color:#ffe000;
+    font-size:30px;
+    margin:15px 0;
+}
+
+.subtitulo{
+    color:#ffe900;
+    font-size:22px;
+    font-style:italic;
+    margin:15px;
+}
+
+/* CONTRASEÑA */
+.caja-password{
+    background:#f8f4d8;
+    color:#153c70;
+    padding:30px;
+    border-radius:20px;
+    width:min(400px,90%);
+    box-shadow:0 10px 25px #06477d;
+}
+
+input{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    margin:15px 0;
+    font-size:18px;
+    text-align:center;
+}
+
+button{
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.btn{
+    background:#f04a20;
+    color:#fff9d9;
+    padding:15px 28px;
+    border-radius:15px;
+    font-size:18px;
+    box-shadow:0 5px 0 #a72c15;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+.error{
+    color:#e33;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+/* CARTA */
+.carta{
+    width:min(650px,92%);
+    background:#fff9d8;
+    color:#183d6b;
+    padding:35px;
+    border:7px solid #244f91;
+    border-radius:15px;
+    box-shadow:0 12px 30px rgba(0,0,0,.3);
+    text-align:left;
+    line-height:1.7;
+    position:relative;
+}
+
+.carta::before{
+    content:"🏍️";
+    position:absolute;
+    top:-30px;
+    left:-10px;
+    font-size:50px;
+}
+
+.carta h3{
+    text-align:center;
+    font-family:monospace;
+    margin-bottom:20px;
+    font-size:22px;
+}
+
+.firma{
+    text-align:right;
+    margin-top:20px;
+    font-family:cursive;
+    font-size:22px;
+}
+
+/* MOTOS */
+.motos{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:30px;
+    margin:25px 0;
+}
+
+.moto{
+    font-size:100px;
+    animation:flotar 2s infinite ease-in-out;
+    filter:drop-shadow(0 8px 5px rgba(0,0,0,.3));
+}
+
+.moto:nth-child(2){
+    animation-delay:.4s;
+}
+
+.moto:nth-child(3){
+    animation-delay:.8s;
+}
+
+@keyframes flotar{
+    0%,100%{
+        transform:translateY(0) rotate(-2deg);
+    }
+    50%{
+        transform:translateY(-10px) rotate(2deg);
+    }
+}
+
+/* FOTOS */
+.fotos{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:30px;
+    width:min(700px,95%);
+    margin:20px auto 35px;
+}
+
+.foto{
+    width:260px;
+    background:#fffdf0;
+    padding:12px 12px 20px;
+    border-radius:5px;
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+    color:#183d6b;
+    transition:transform .3s ease;
+}
+
+.foto1{
+    transform:rotate(-4deg);
+}
+
+.foto2{
+    transform:rotate(4deg);
+}
+
+.foto:hover{
+    transform:rotate(0deg) scale(1.05);
+    z-index:5;
+}
+
+.foto img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    display:block;
+    border-radius:2px;
+}
+
+.foto p{
+    font-family:cursive;
+    font-size:18px;
+    margin-top:12px;
+}
+
+/* REGALOS */
+.regalos{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:30px;
+    margin:30px 0;
+}
+
+.regalo{
+    width:210px;
+    padding:20px;
+    background:rgba(255,255,255,.12);
+    border-radius:20px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.regalo:hover{
+    transform:translateY(-10px) scale(1.04);
+    background:rgba(255,255,255,.2);
+}
+
+.regalo .emoji{
+    font-size:65px;
+}
+
+.mensaje-regalo{
+    display:none;
+    margin-top:15px;
+    color:#fff3a8;
+    font-weight:bold;
+}
+
+/* MÚSICA */
+.musica{
+    background:#fff9d8;
+    color:#173c6c;
+    padding:20px;
+    border-radius:18px;
+    width:min(600px,90%);
+    margin:20px;
+}
+
+.disco{
+    font-size:80px;
+    animation:girar 4s linear infinite;
+}
+
+@keyframes girar{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* FINAL */
+.final{
+    font-size:25px;
+    max-width:650px;
+    line-height:1.6;
+}
+
+.corazon{
+    font-size:70px;
+    animation:latir 1s infinite;
+}
+
+@keyframes latir{
+    50%{
+        transform:scale(1.2);
+    }
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+
+    h1{
+        font-size:38px;
+    }
+
+    h2{
+        font-size:25px;
+    }
+
+    .carta{
+        padding:25px 20px;
+    }
+
+    .moto{
+        font-size:80px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PANTALLA 1 -->
+<section id="inicio" class="pantalla activa">
+
+    <div class="flag">🏁🏁🏁🏁🏁</div>
+
+    <h1>Ingresa la contraseña</h1>
+
+    <p class="subtitulo">
+        Pista: una fecha especial 💙
+    </p>
+
+    <div class="caja-password">
+
+        <p>🔐 Solo tú puedes entrar</p>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Escribe la contraseña">
+
+        <button class="btn" onclick="entrar()">
+            ENTRAR 🏍️
+        </button>
+
+        <p id="error" class="error"></p>
+
+    </div>
+
+</section>
+
+
+<!-- PANTALLA 2 -->
+<section id="saludo" class="pantalla">
+
+    <div class="flag">🏁🏁🏁</div>
+
+    <h1>¡Hola! ❤️</h1>
+
+    <h1>Mi amor</h1>
+
+    <p class="subtitulo">
+        Tengo algo preparado especialmente para ti...
+    </p>
+
+    <div class="motos">
+
+        <div class="moto">🏍️</div>
+
+        <div class="moto">🏍️</div>
+
+    </div>
+
+    <button class="btn" onclick="mostrar('carta')">
+        VER MI CARTA 💌
+    </button>
+
+</section>
+
+
+<!-- PANTALLA 3 CARTA -->
+<section id="carta" class="pantalla">
+
+    <h1>Una carta para ti...</h1>
+
+    <div class="carta">
+
+        <h3>🏍️ PALABRAS QUE QUIERO DECIRTE 🏍️</h3>
+
+        <p>
+            Mi amor,
+        </p>
+
+        <br>
+
+        <p>
+            Hoy quería enviarte algo diferente, algo que
+            tuviera un poquito de nosotros y que pudieras
+            guardar como un bonito recuerdo.
+        </p>
+
+        <br>
+
+        <p>
+            Así que pensé en hacerte un diseño con motos,
+            porque sé que te gustan y porque quería que este
+            pequeño detalle fuera solamente para ti.
+        </p>
+
+        <br>
+
+        <p>
+            Y pensar que un 24 de agosto, una fecha que tiene bastante significado para
+            los dos comenzamos una historia que espero podamos seguir construyendo juntos 
+            y disfrutando cada momento y cada etapa.
+            
+        </p>
+
+        <br>
+
+        <p>
+            Gracias por estar conmigo, por hacerme sentir
+            especial y por cada momento bonito que hemos
+            compartido.
+        </p>
+
+        <br>
+
+        <p>
+            Espero que cuando veas esto,te saque una sonrisa y 
+            te recuerde lo muchomque significas para mi.❤️
+        </p>
+
+        <p class="firma">
+            Con mucho cariño<br>
+            Karina ❤️🏍️
+        </p>
+
+    </div>
+
+    <br>
+
+    <button class="btn" onclick="mostrar('musica')">
+        SIGUIENTE 🎵
+    </button>
+
+</section>
+
+
+<!-- PANTALLA 4: FOTOS + CANCIÓN -->
+<section id="musica" class="pantalla">
+
+    <div class="flag">🏁🏁🏁</div>
+
+    <h1>Una canción para ti...</h1>
+
+    <p class="subtitulo">
+        Algunas fotos que me hacen pensar en nosotros ❤️
+    </p>
+
+    <div class="fotos">
+
+        <div class="foto foto1">
+
+            <img
+                src="fotos/Foto1.jpeg"
+                alt="Nuestro recuerdo">
+
+            <p>
+                Un momento bonito ❤️
+            </p>
+
+        </div>
+
+
+        <div class="foto foto2">
+
+            <img
+                src="fotos/Foto2.jpeg"
+                alt="Nuestro recuerdo">
+
+            <p>
+                Contigo 🥰
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="musica">
+
+        <div class="disco">
+            💿
+        </div>
+
+        <h2>
+            🎵 Nuestra canción
+        </h2>
+
+        <p>
+            Dale play y escucha esta canción
+            pensando en nosotros.
+        </p>
+
+        <br>
+
+        <audio controls>
+
+            <source
+                src="cancion.mp3.mp3"
+                type="audio/mpeg">
+
+            Tu navegador no puede reproducir
+            este audio.
+
+        </audio>
+
+    </div>
+
+
+    <button class="btn" onclick="mostrar('regalos')">
+        VER REGALOS 🎁
+    </button>
+
+</section>
+
+
+<!-- PANTALLA 5 REGALOS -->
+<section id="regalos" class="pantalla">
+
+    <h1>
+        Hay algo más para ti...
+    </h1>
+
+    <p class="subtitulo">
+        Haz clic en cada uno 🏍️🎁
+    </p>
+
+
+    <div class="regalos">
+
+        <div class="regalo" onclick="regalo(1)">
+
+            <div class="emoji">
+                🏍️
+            </div>
+
+            <h2>
+                Regalo #1
+            </h2>
+
+            <p
+                class="mensaje-regalo"
+                id="regalo1">
+
+                Eres mi persona favorita ❤️
+
+            </p>
+
+        </div>
+
+
+        <div class="regalo" onclick="regalo(2)">
+
+            <div class="emoji">
+                🎁
+            </div>
+
+            <h2>
+                Regalo #2
+            </h2>
+
+            <p
+                class="mensaje-regalo"
+                id="regalo2">
+
+                Siempre quiero compartir
+                momentos contigo. 🥰
+
+            </p>
+
+        </div>
+
+
+        <div class="regalo" onclick="regalo(3)">
+
+            <div class="emoji">
+                🏁
+            </div>
+
+            <h2>
+                Regalo #3
+            </h2>
+
+            <p
+                class="mensaje-regalo"
+                id="regalo3">
+
+                Seamos los dos por mucho tiempo . ❤️🏁
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="btn"
+        onclick="mostrar('final')">
+
+        LLEGAR A LA META 🏁
+
+    </button>
+
+</section>
+
+
+<!-- PANTALLA FINAL -->
+<section id="final" class="pantalla">
+
+    <div class="corazon">
+        ❤️
+    </div>
+
+    <h1>
+        ¡Llegaste a la meta!
+    </h1>
+
+    <p class="final">
+
+        Pero esta carrera no termina aquí...
+
+        <br><br>
+
+        Con la bendicion de Dios que sigamos creando muchos recuerdos
+        juntos, recorriendo cada obstaculo y disfrutando
+        cada momento.
+
+        <br><br>
+
+        <strong>
+            Te quiero muchísimo. 🏍️❤️🏁
+        </strong>
+
+    </p>
+
+
+    <div class="motos">
+
+        <div class="moto">
+            🏍️
+        </div>
+
+    </div>
+
+
+    <div class="flag">
+        🏁🏁🏁🏁🏁
+    </div>
+
+</section>
+
+
+<script>
+
+/* CAMBIAR DE PANTALLA */
+
+function mostrar(id){
+
+    document
+    .querySelectorAll(".pantalla")
+    .forEach(p =>
+        p.classList.remove("activa")
+    );
+
+    document
+    .getElementById(id)
+    .classList.add("activa");
+
+    window.scrollTo(0,0);
+}
+
+
+/* CONTRASEÑA */
+
+function entrar(){
+
+    let clave =
+        document.getElementById("password").value;
+
+    /*
+       AQUÍ PUEDES CAMBIAR LA CONTRASEÑA
+
+       Actualmente es:
+       24082026
+    */
+
+    if(clave === "24082026"){
+
+        mostrar("saludo");
+
+    }else{
+
+        document
+        .getElementById("error")
+        .textContent =
+        "Contraseña incorrecta 🥺";
+
+    }
+}
+
+
+/* REGALOS */
+
+function regalo(numero){
+
+    let mensaje =
+        document.getElementById(
+            "regalo" + numero
+        );
+
+    mensaje.style.display =
+        mensaje.style.display === "block"
+        ? "none"
+        : "block";
+}
+
+</script>
+
+</body>
+</html>
